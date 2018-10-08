@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MSOE Flight School</string>
+    <string name="title_activity_connection_activity">connection_activity</string>
+    <string name="BtnText">Lets Fly!</string>
+    <string name="action_settings">Settings</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="product_information">Product Information</string>
+    <string name="connection_loose">Status: No Product Connected</string>
+    <string name="sdk_version">DJI SDK Version:</string>
+    <string name="directions_caption">To try recognition of directions: say something like \"forward backward right or left\".</string>
+</resources>

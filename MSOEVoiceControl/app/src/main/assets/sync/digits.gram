@@ -1,0 +1,13 @@
+#JSGF V1.0;
+
+grammar digits;
+
+<digit> = forward    |
+          backward  |
+          up  |
+          down  |
+          right   |
+          finish |
+          left  ;
+
+public <digits> = <digit>+;
