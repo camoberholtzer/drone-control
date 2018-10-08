@@ -178,6 +178,13 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
         mUpBtn.setOnClickListener(this);
         mDownBtn.setOnClickListener(this);
         mCalibrateBtn.setOnClickListener(this);
+
+        mVoiceControlBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                startVoiceControl();
+            }
+        });
+
     }
 
     /**
@@ -250,7 +257,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
             if (text.equals("backward"))
                 text = "back";
             if(text.equals(ALL_DONE)){
-                speechRecognizer.stop();
+                speechRecognizer.cancel();
                 showToast("all done");
             } else {
                 //voice command recognized!
@@ -277,6 +284,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
      */
     @Override
     public void onBeginningOfSpeech() {
+        speechRecognizer.startListening(DIRECTIONS_COMMANDS, 1000);
     }
 
     /**
@@ -309,6 +317,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
      */
     @Override
     public void onError(Exception error) {
+        showToast(error.toString());
     }
 
     /**
@@ -369,8 +378,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
         uninitPreviewer();
         super.onDestroy();
         if (speechRecognizer != null) {
-            speechRecognizer.cancel();
-            speechRecognizer.shutdown();
+            stopVoiceControl();
         }
     }
 
@@ -511,19 +519,34 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                 break;
             }
             case R.id.btn_left:{
+                showToast("Left");
                 rightJoystickInput(LEFT_ROTATION_AMOUNT, 0);
                 break;
             }
             case R.id.btn_right:{
+                showToast("Right");
                 rightJoystickInput(RIGHT_ROTATION_AMOUNT,0);
                 break;
             }
             case R.id.btn_forward:{
+                showToast("Forward");
                 leftJoystickInput(0, FORWARD_MOVE_DISTANCE);
                 break;
             }
             case R.id.btn_back: {
+                showToast("Back");
                 leftJoystickInput(0, BACK_MOVE_DISTANCE);
+                break;
+            }
+            case R.id.btn_up: {
+                showToast("Up");
+                rightJoystickInput(0, UP_MOVE_DISTANCE);
+                break;
+            }
+            case R.id.btn_down: {
+                showToast("Down");
+                rightJoystickInput(0, DOWN_MOVE_DISTANCE);
+                break;
             }
             default:
                 break;
@@ -541,6 +564,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
      * This stops the speech recognizer
      */
     private void stopVoiceControl() {
+        speechRecognizer.cancel();
         speechRecognizer.shutdown();
     }
 
@@ -568,7 +592,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                             @Override
                             public void onResult(DJIError djiError) {
                                 if (null == djiError) {
-                                    //showToast("LeftStickCommandExecuted");
+                                    showToast("LeftStickCommandExecuted");
                                 } else {
                                     showToast("failure "+ djiError.getDescription());
                                 }
@@ -600,7 +624,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                             @Override
                             public void onResult(DJIError djiError) {
                                 if (null == djiError) {
-                                    //showToast("RightStickCommandExecuted");
+                                    showToast("RightStickCommandExecuted");
                                 } else {
                                     showToast("failure "+ djiError.getDescription());
                                 }
