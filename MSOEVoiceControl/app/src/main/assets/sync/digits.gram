@@ -3,11 +3,18 @@
 grammar digits;
 
 <digit> = forward    |
+          move forward |
           backward  |
+          move backward |
           up  |
+          fly up |
           down  |
+          fly down|
           right   |
+          turn right |
           finish |
-          left  ;
+          land |
+          left  |
+          turn left;
 
 public <digits> = <digit>+;

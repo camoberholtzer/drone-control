@@ -264,17 +264,17 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
             } else {
                 //voice command recognized!
                 showToast(text);
-                if (text.equals("up"))
+                if (text.equals("up") || text.equals("fly up"))
                     rightJoystickInput(0, UP_MOVE_DISTANCE);
-                else if (text.equals("down"))
+                else if (text.equals("down") || text.equals("fly down"))
                     rightJoystickInput(0, DOWN_MOVE_DISTANCE);
-                else if (text.equals("left"))
+                else if (text.equals("left") || text.equals("turn left"))
                     rightJoystickInput(LEFT_ROTATION_AMOUNT, 0);
-                else if (text.equals("right"))
+                else if (text.equals("right") || text.equals("turn right"))
                     rightJoystickInput(RIGHT_ROTATION_AMOUNT, 0);
-                else if (text.equals("forward"))
+                else if (text.equals("forward") || text.equals("move forward"))
                     leftJoystickInput(0, FORWARD_MOVE_DISTANCE);
-                else if (text.equals("back"))
+                else if (text.equals("back") || text.equals("move backward"))
                     leftJoystickInput(0, BACK_MOVE_DISTANCE);
             }
 
