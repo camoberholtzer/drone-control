@@ -166,6 +166,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
         mDownBtn = (Button) findViewById(R.id.btn_down);
         mCalibrateBtn = (Button) findViewById(R.id.btn_calibrate);
         mVoiceControlBtn = (ToggleButton) findViewById(R.id.btn_voice_control);
+        mSpinBtn = (Button) findViewById(R.id.spinButton);
         heading = (TextView) findViewById(R.id.heading);
 
         //Event handler listeners
@@ -178,6 +179,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
         mUpBtn.setOnClickListener(this);
         mDownBtn.setOnClickListener(this);
         mCalibrateBtn.setOnClickListener(this);
+        mSpinBtn.setOnClickListener(this);
 
         mVoiceControlBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -519,34 +521,31 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                 break;
             }
             case R.id.btn_left:{
-                showToast("Left");
                 rightJoystickInput(LEFT_ROTATION_AMOUNT, 0);
                 break;
             }
             case R.id.btn_right:{
-                showToast("Right");
                 rightJoystickInput(RIGHT_ROTATION_AMOUNT,0);
                 break;
             }
             case R.id.btn_forward:{
-                showToast("Forward");
                 leftJoystickInput(0, FORWARD_MOVE_DISTANCE);
                 break;
             }
             case R.id.btn_back: {
-                showToast("Back");
                 leftJoystickInput(0, BACK_MOVE_DISTANCE);
                 break;
             }
             case R.id.btn_up: {
-                showToast("Up");
                 rightJoystickInput(0, UP_MOVE_DISTANCE);
                 break;
             }
             case R.id.btn_down: {
-                showToast("Down");
                 rightJoystickInput(0, DOWN_MOVE_DISTANCE);
                 break;
+            }
+            case R.id.spinButton: {
+                rightJoystickInput(180, 0);
             }
             default:
                 break;
