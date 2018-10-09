@@ -258,7 +258,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
             String text = hypothesis.getHypstr();
             if (text.equals("backward"))
                 text = "back";
-            if(text.equals(ALL_DONE)){
+            if(text.equals(ALL_DONE) || text.equals("Land")){
                 speechRecognizer.cancel();
                 showToast("all done");
             } else {
