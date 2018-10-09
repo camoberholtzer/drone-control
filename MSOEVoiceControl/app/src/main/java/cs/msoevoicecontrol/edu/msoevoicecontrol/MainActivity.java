@@ -544,7 +544,8 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                 break;
             }
             case R.id.spinButton: {
-                rightJoystickInput(180, 0);
+                rightJoystickInput(-180, 0);
+                break;
             }
             default:
                 break;
