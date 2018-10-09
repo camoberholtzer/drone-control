@@ -263,7 +263,6 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                 showToast("all done");
             } else {
                 //voice command recognized!
-                showToast(text);
                 if (text.equals("up") || text.equals("fly up"))
                     rightJoystickInput(0, UP_MOVE_DISTANCE);
                 else if (text.equals("down") || text.equals("fly down"))
@@ -277,7 +276,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                 else if (text.equals("back") || text.equals("move backward"))
                     leftJoystickInput(0, BACK_MOVE_DISTANCE);
             }
-
+            showToast(text);
         }
     }
 
