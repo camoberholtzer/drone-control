@@ -140,7 +140,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                 }
             });
             flightController.setRollPitchControlMode(RollPitchControlMode.ANGLE);
-            flightController.setYawControlMode(YawControlMode.ANGULAR_VELOCITY);
+            flightController.setYawControlMode(YawControlMode.ANGLE);
             flightController.setVerticalControlMode(VerticalControlMode.VELOCITY);
             flightController.setRollPitchCoordinateSystem(FlightCoordinateSystem.BODY);
             compass = flightController.getCompass();
