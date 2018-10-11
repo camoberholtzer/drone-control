@@ -72,6 +72,7 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
     private static double BACK_MOVE_DISTANCE = 4.0;
     private static double UP_MOVE_DISTANCE = 0.2;
     private static double DOWN_MOVE_DISTANCE = -0.2;
+    private static double REVERSE_MOVE_DISTANCE = 100.0;
 
     private float pitch=0;
     private float roll=0;
@@ -139,8 +140,8 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                     }
                 }
             });
-            flightController.setRollPitchControlMode(RollPitchControlMode.ANGLE);
-            flightController.setYawControlMode(YawControlMode.ANGLE);
+            flightController.setRollPitchControlMode(RollPitchControlMode.VELOCITY);
+            flightController.setYawControlMode(YawControlMode.ANGULAR_VELOCITY);
             flightController.setVerticalControlMode(VerticalControlMode.VELOCITY);
             flightController.setRollPitchCoordinateSystem(FlightCoordinateSystem.BODY);
             compass = flightController.getCompass();
@@ -272,9 +273,13 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                 else if (text.equals("right") || text.equals("turn right"))
                     rightJoystickInput(RIGHT_ROTATION_AMOUNT, 0);
                 else if (text.equals("forward") || text.equals("move forward"))
-                    leftJoystickInput(0, FORWARD_MOVE_DISTANCE);
+                    leftJoystickInput(FORWARD_MOVE_DISTANCE, 0);
                 else if (text.equals("back") || text.equals("move backward"))
-                    leftJoystickInput(0, BACK_MOVE_DISTANCE);
+                    leftJoystickInput(BACK_MOVE_DISTANCE, 0);
+                else if (text.equals("reverse") || text.equals("turn around"))
+                    rightJoystickInput(REVERSE_MOVE_DISTANCE, 0);
+                    rightJoystickInput(REVERSE_MOVE_DISTANCE, 0);
+                    rightJoystickInput(REVERSE_MOVE_DISTANCE, 0);
             }
             showToast(text);
         }
@@ -524,15 +529,15 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                 break;
             }
             case R.id.btn_right:{
-                rightJoystickInput(RIGHT_ROTATION_AMOUNT,0);
+                rightJoystickInput(RIGHT_ROTATION_AMOUNT, 0);
                 break;
             }
             case R.id.btn_forward:{
-                leftJoystickInput(0, FORWARD_MOVE_DISTANCE);
+                leftJoystickInput(FORWARD_MOVE_DISTANCE,0);
                 break;
             }
             case R.id.btn_back: {
-                leftJoystickInput(0, BACK_MOVE_DISTANCE);
+                leftJoystickInput(BACK_MOVE_DISTANCE, 0);
                 break;
             }
             case R.id.btn_up: {
@@ -544,7 +549,9 @@ public class MainActivity extends Activity implements SurfaceTextureListener,OnC
                 break;
             }
             case R.id.spinButton: {
-                rightJoystickInput(-180, 0);
+                rightJoystickInput(REVERSE_MOVE_DISTANCE, 0);
+                rightJoystickInput(REVERSE_MOVE_DISTANCE, 0);
+                rightJoystickInput(REVERSE_MOVE_DISTANCE, 0);
                 break;
             }
             default:
